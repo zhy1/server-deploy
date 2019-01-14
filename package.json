@@ -1,0 +1,10 @@
+{
+  "name": "fabio-consul-compose",
+  "version": "1.0.0",
+  "scripts": {
+    "1": "docker run -d --net=fabio-consul-compose_app_net -e \"SERVICE_NAME=db\"   -e \"SERVICE_TAGS=master,backups\"   -e \"SERVICE_REGION=us2\" -P --name=redis_testing redis",
+    "2": "docker rm redis_testing"
+  },
+  "dependencies": {
+  }
+}
