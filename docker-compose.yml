@@ -14,6 +14,8 @@ services:
   consul_server_2:
     image: "consul:latest"
     container_name: "consul_server_2"
+    depends_on:
+      - consul_server_1
     ports:
       - "8600:8600"
       - "8500:8500"
@@ -24,6 +26,9 @@ services:
   consul_server_3:
     image: "consul:latest"
     container_name: "consul_server_3"
+    depends_on:
+      - consul_server_1
+      - consul_server_2
     environment:
       CONSUL_LOCAL_CONFIG: '{"leave_on_terminate": true}'
     networks:
@@ -32,6 +37,10 @@ services:
     command: "agent -server -bind=172.29.0.5 -client=172.29.0.5 -retry-join=172.29.0.4 -bootstrap-expect=3"
   fabio:
     image: "magiconair/fabio"
+    depends_on:
+      - consul_server_1
+      - consul_server_2
+      - consul_server_3
     ports:
       - "9998:9998"
       - "9999:9999"
