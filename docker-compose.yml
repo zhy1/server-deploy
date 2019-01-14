@@ -42,7 +42,7 @@ services:
       - ./fabio.properties:/etc/fabio/fabio.properties
 
   registrator:
-    command: "-ip 172.29.0.7 consul://172.29.0.4:8500"
+    command: "sleep 5 -ip 172.29.0.7 consul://172.29.0.4:8500"
     image: "gliderlabs/registrator:latest"
     networks:
       app_net:
