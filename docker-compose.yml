@@ -41,6 +41,14 @@ services:
     volumes:
       - ./fabio.properties:/etc/fabio/fabio.properties
 
+  registrator:
+    command: "-ip 172.20.0.7 consul://172.20.0.4:8500"
+    image: "gliderlabs/registrator:latest"
+    networks:
+      app_net:
+        ipv4_address: 172.20.0.7
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
 networks:
   app_net:
     driver: bridge
