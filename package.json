@@ -5,6 +5,7 @@
     "01": "docker-compose up -d",
     "02": "docker rm consul_server_2 consul_server_1 consul_server_3 fabio-consul-compose_fabio_1  fabio-consul-compose_registrator_1 -f",
     "03": "curl 127.0.0.1:8500/v1/catalog/services",
+    "04": "docker inspect fabio-consul-compose_registrator_1",
     "11": "docker run -d --net=fabio-consul-compose_app_net -e \"SERVICE_NAME=db\"   -e \"SERVICE_TAGS=master,backups\"   -e \"SERVICE_REGION=us2\" -P --name=redis_testing redis",
     "12": "docker rm redis_testing -f"
   },
