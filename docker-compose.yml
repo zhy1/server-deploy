@@ -54,7 +54,8 @@ services:
 
   registrator:
     # this ip must be public ip not vlan ip.
-    command: "-ip 172.29.0.7 consul://172.29.0.4:8500"
+#   command: "-ip 172.29.0.7 consul://172.29.0.4:8500"
+    command: "-ip 172.17.20.175 consul://172.17.20.175:8500"
     depends_on:
       - consul_server_1
       - consul_server_2
@@ -66,7 +67,6 @@ services:
         ipv4_address: 172.29.0.7
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
-      -
 networks:
   app_net:
     driver: bridge
