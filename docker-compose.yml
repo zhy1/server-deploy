@@ -10,6 +10,8 @@ services:
       app_net:
         ipv4_address: 172.29.0.3
     command: "agent -server -bind=172.29.0.3 -client=172.29.0.3 -retry-join=172.29.0.2"
+    restart:
+      always
 
   consul_server_2:
     image: "consul:latest"
@@ -23,6 +25,8 @@ services:
       app_net:
         ipv4_address: 172.29.0.4
     command: "agent -server -bind=172.29.0.4 -client=172.29.0.4 -retry-join=172.29.0.3 -ui"
+    restart:
+      always
 
   consul_server_3:
     image: "consul:latest"
@@ -36,6 +40,8 @@ services:
       app_net:
         ipv4_address: 172.29.0.5
     command: "agent -server -bind=172.29.0.5 -client=172.29.0.5 -retry-join=172.29.0.4 -bootstrap-expect=3"
+    restart:
+      always
 
   fabio:
     image: "magiconair/fabio"
@@ -44,6 +50,7 @@ services:
       - consul_server_2
       - consul_server_3
     ports:
+      - "9997:9997" # tcp
       - "9998:9998"
       - "9999:9999"
     networks:
@@ -51,11 +58,14 @@ services:
         ipv4_address: 172.29.0.6
     volumes:
       - ./fabio.properties:/etc/fabio/fabio.properties
+    restart:
+      always
 
+#   command: "-ip 172.29.0.7 consul://172.29.0.4:8500"
+#    command: "-ip 192.168.31.216 consul://192.168.31.216:8500"
   registrator:
     # this ip must be public ip not vlan ip.
-#   command: "-ip 172.29.0.7 consul://172.29.0.4:8500"
-    command: "-ip 172.17.20.175 consul://172.17.20.175:8500"
+    command: "-ip 172.17.20.211 consul://172.17.20.211:8500"
     depends_on:
       - consul_server_1
       - consul_server_2
@@ -67,6 +77,23 @@ services:
         ipv4_address: 172.29.0.7
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
+    restart:
+      always
+
+#  netdata:
+    # image:  netdata/netdata:latest
+    # cap_add:
+      # - SYS_PTRACE
+    # volumes:
+      # - /proc:/host/proc:ro
+      # - /sys:/host/sys:ro
+      # - /etc/localtime:/etc/localtime:ro
+      # - netdata/netdata.conf /etc/netdata/netdata.conf
+    # ports:
+      # - 127.0.0.1:8080:19999
+    # restart:
+      # always
+
 networks:
   app_net:
     driver: bridge
