@@ -60,8 +60,10 @@ services:
       - "9992:9992"
       - "9991:9991"
       - "9990:9990"
-      - "6605:6605"
-      - "6606:6606"
+      - "9989:9989"
+      - "9988:9988"
+      - "9985:9985"
+      - "9986:9986"
     networks:
       app_net:
         ipv4_address: 172.29.0.6
@@ -97,7 +99,7 @@ services:
       # - /etc/localtime:/etc/localtime:ro
       # - netdata/netdata.conf /etc/netdata/netdata.conf
       # ports:
-      # - 127.0.0.1:8080:19999
+    # - 127.0.0.1:8080:19999
     # restart:
     # always
 
