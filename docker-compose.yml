@@ -53,6 +53,15 @@ services:
       - "9997:9997" # tcp
       - "9998:9998"
       - "9999:9999"
+      - "9996:9996"
+      - "9995:9995"
+      - "9994:9994"
+      - "9993:9993"
+      - "9992:9992"
+      - "9991:9991"
+      - "9990:9990"
+      - "6605:6605"
+      - "6606:6606"
     networks:
       app_net:
         ipv4_address: 172.29.0.6
@@ -89,7 +98,7 @@ services:
       # - netdata/netdata.conf /etc/netdata/netdata.conf
       # ports:
       # - 127.0.0.1:8080:19999
-      # restart:
+    # restart:
     # always
 
 networks:
