@@ -12,8 +12,8 @@ services:
       - SERVICE_CHECK_HTTP=/srv-rrp_health
       - SERVICE_CHECK_INTERVAL=15s
       - SERVICE_CHECK_TIMEOUT=1s
-    env_file:
-      - ./env
+    env-file:
+
     volumes:
       - ./logs:/app
       - /app/config/test.yml:/etc/config.yml
