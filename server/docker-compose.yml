@@ -1,0 +1,21 @@
+version: "3"
+services:
+  node_rrp:
+    container_name: rrp
+    restart: always
+    image: registry.cn-shanghai.aliyuncs.com/cyanz/rrp:1.5.0.13
+    environment:
+      - ENV=test
+      - SERVICE_NAME=rrp
+#      - SERVICE_TAGS=urlprefix-/rrp_health,urlprefix-/srv-rrp_health
+      - SERVICE_TAGS=urlprefix-:9997 proto=tcp pxyproto=true
+      - SERVICE_CHECK_HTTP=/srv-rrp_health
+      - SERVICE_CHECK_INTERVAL=15s
+      - SERVICE_CHECK_TIMEOUT=1s
+    env_file:
+      - ./env
+    volumes:
+      - ./logs:/app
+      - /app/config/test.yml:/etc/config.yml
+    ports:
+      - 8899:8899
