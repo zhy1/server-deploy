@@ -1,8 +1,15 @@
+# fabio console compose file
+
+
+# introduce
+
+
+# construct.
 
 
 
 
-
+# manual
 test cli:
 ```
 
@@ -16,8 +23,10 @@ docker container inspect redis
 ```
 
 
+version 2.
+```
 docker run -d --net=fabio-consul-compose_app_net -e "SERVICE_NAME=db"   -e "SERVICE_TAGS=master,backups"   -e "SERVICE_REGION=us2" -P --name=redis redis
-
+```
 
 
 doc: 
