@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  code_server:
+    image: codercom/code-server
+    container_name: "code-server"
+    #environment:
+    #  CONSUL_LOCAL_CONFIG: '{"leave_on_terminate": true}'
+    volumes:
+      - /apps/code-server/data:/home/coder/project
+    #networks:
+    #  app_net:
+    #    ipv4_address: 172.29.0.3
+    # command: "agent -server -bind=172.29.0.3 -client=172.29.0.3 -retry-join=172.29.0.2"
+    ports:
+      - 18443:8443
+    restart:
+      always
+    command: "--allow-http --no-auth"
+
+#networks:
+#  app_net:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: "172.29.0.0/24"
