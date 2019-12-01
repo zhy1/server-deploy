@@ -34,3 +34,7 @@ http://gliderlabs.github.io/registrator/latest/user/quickstart/
 
 
 http://gliderlabs.github.io/registrator/latest/user/run/
+
+
+ref:
+https://github.com/tfssweb/tfss-dockerfile
